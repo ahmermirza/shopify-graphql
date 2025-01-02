@@ -1,0 +1,48 @@
+{% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
+<span style="color:{{ block.settings.colour }}">
+  {% render 'stars', rating: avg_rating %}
+</span>
+{% if avg_rating >= 4 %}
+  <br>
+  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+  {{ 'ratings.home.recommendationText' | t }}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Star Rating",
+  "target": "section",
+  "settings": [
+    {
+      "id": "stars_fill_color",
+      "type": "color",
+      "label": "t:blocks.average-rating.settings.stars_fill_color.label",
+      "default": "#000000"
+    },
+    {
+      "id": "star_size",
+      "type": "number",
+      "label": "t:blocks.average-rating.settings.star_size.label",
+      "default": 24
+    },
+    {
+      "id": "padding_x",
+      "type": "number",
+      "label": "t:blocks.average-rating.settings.padding_x.label",
+      "default": 0
+    },
+    {
+      "id": "padding_y",
+      "type": "number",
+      "label": "t:blocks.average-rating.settings.padding_y.label",
+      "default": 0
+    },
+    {
+      "id": "product",
+      "type": "product",
+      "label": "t:blocks.average-rating.settings.product.label",
+      "autofill": true
+    }
+  ]
+}
+{% endschema %}

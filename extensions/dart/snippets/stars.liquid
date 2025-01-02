@@ -1,0 +1,13 @@
+<p style="color: black; margin-bottom: 3px;">
+  {{ 'ratings.stars.label' | t }}:
+  <span style="color:{{ block.settings.colour }}">
+    {%- for i in (1..rating) -%}
+      ★
+    {%- endfor -%}
+
+    {%- assign blank_stars = 5 | minus: rating -%}
+    {%- for i in (1..blank_stars) -%}
+      ☆
+    {%- endfor -%}
+  </span>
+</p>
