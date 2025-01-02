@@ -602,6 +602,140 @@ class HomeController extends Controller
 		}
 	}
 
+	public function showLocations() {
+		try {
+
+			$shop = Auth::user();
+
+			if (!$shop) {
+				return response()->json(['error' => 'Shop not authenticated'], 401);
+			}
+
+			$query = <<<QUERY
+				query locations {
+					locations(first: 1, query: "shop") {
+						edges {
+							node {
+								name
+								id
+							}
+						}
+					}
+				}
+				QUERY;
+
+			$response = $shop->api()->graph($query);
+
+			if ($response['errors']) {
+				return response($response);
+			}
+
+			return response($response['body']['data']['locations']);
+		} catch (\Exception $e) {
+			return response()->json(['error' => $e->getMessage()], 500);
+		}
+	}
+
+	public function showInventoryItems() {
+		try {
+
+			$shop = Auth::user();
+
+			if (!$shop) {
+				return response()->json(['error' => 'Shop not authenticated'], 401);
+			}
+
+			$id = "gid://shopify/Product/9267996229909";
+
+			$query = <<<QUERY
+				query inventoryItem(\$id: ID!) {
+					product(id: \$id) {
+						variants(first: 9) {
+							edges {
+								node {
+									title
+									inventoryItem {
+										id
+									}
+								}
+							}
+						}
+					}
+				}
+				QUERY;
+
+			$response = $shop->api()->graph($query, ['id' => $id]);
+
+			if ($response['errors']) {
+				return response($response);
+			}
+
+			return response($response['body']['data']['product']);
+		} catch (\Exception $e) {
+			return response()->json(['error' => $e->getMessage()], 500);
+		}
+	}
+
+	public function setInventoryItemsQuantity()
+	{
+		try {
+
+			$shop = Auth::user();
+
+			if (!$shop) {
+				return response()->json(['error' => 'Shop not authenticated'], 401);
+			}
+
+			$input = [
+				"name" => "available", 
+				"reason" => "correction", 
+				"ignoreCompareQuantity" => true, 
+				"quantities" => [
+					[
+						"inventoryItemId" => "gid://shopify/InventoryItem/50691514466581", 
+						"locationId" => "gid://shopify/Location/95788269845", 
+						"quantity" => 45,
+						"compareQuantity" => 45
+					]
+				] 
+			];			
+
+			$mutation = <<<MUTATION
+					mutation inventorySetQuantities(\$input: InventorySetQuantitiesInput!) {
+						inventorySetQuantities(input: \$input) {
+							inventoryAdjustmentGroup {
+								createdAt
+								reason
+								referenceDocumentUri
+								changes {
+									name
+									delta
+									quantityAfterChange
+									location {
+										id
+										name
+									}
+								}
+							}
+							userErrors {
+								field
+								message
+							}
+						}
+					}
+				MUTATION;
+			$response = $shop->api()->graph($mutation, ['input' => $input]);
+
+			if ($response['errors']) {
+				return response($response);
+			}
+
+			return response($response['body']['data']['inventorySetQuantities']['inventoryAdjustmentGroup']);
+		} catch (\Exception $e) {
+			return response()->json(['error' => $e->getMessage()], 500);
+		}
+	}
+
 	public function show()
 	{
 		try {

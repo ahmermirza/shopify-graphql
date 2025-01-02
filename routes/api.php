@@ -34,6 +34,9 @@ Route::group(['middleware' => ['verify.shopify']], function () {
     Route::get('product/variants', [HomeController::class, 'showProductVariants'])->name('product.variants.show');
     Route::get('product/variants-update', [HomeController::class, 'updateProductVariants'])->name('product.variants.update');
     Route::get('product/variants-delete', [HomeController::class, 'deleteProductVariants'])->name('product.variants.delete');
+    Route::get('locations', [HomeController::class, 'showLocations'])->name('locations');
+    Route::get('inventory-items', [HomeController::class, 'showInventoryItems'])->name('inventory-items');
+    Route::get('inventory-items/quantity', [HomeController::class, 'setInventoryItemsQuantity'])->name('set.inventory-items.quantity');
 
     // cutomers routes
     Route::get('customers/{cursor?}', [CustomerController::class, 'customers'])->name('customers');
