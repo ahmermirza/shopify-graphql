@@ -136,7 +136,7 @@
             createdProductId = product.id;
             $('#tempProductId').text(product.id);
             $('#status').html(
-                `<p>Product created successfully!<br><strong>ID:</strong> ${product.id}<br><strong>Title:</strong> ${product.title}</p>`
+                `<p>Product with standalone variant created successfully!<br><strong>ID:</strong> ${product.id}<br><strong>Title:</strong> ${product.title}</p>`
             );
 
             // Added 2 product options with 2 value, but 3 values of the same 2 options while creating variants & variants with all 3 option values were added to that product.
@@ -184,11 +184,11 @@
                     ],
                     "inventoryItem": {
                         "sku": "RED_MED"
-                    }
-                    // "inventoryQuantities": [{
-                    //     "locationId": "gid://shopify/Location/95788269845",
-                    //     "availableQuantity": 89,
-                    // }]
+                    },
+                    "inventoryQuantities": [{
+                        "locationId": "gid://shopify/Location/95788269845",
+                        "availableQuantity": 281
+                    }]
                 },
                 {
                     "price": 6.99,

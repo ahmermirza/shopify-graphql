@@ -212,6 +212,45 @@ class HomeController extends Controller
 
 			$productInput = $request->input('productInput'); // Input passed from the frontend
 
+			// $productInput = [
+			// 	"category" => "gid://shopify/TaxonomyCategory/aa-1-13-8",
+			// 	"collectionsToJoin" => [
+			// 		"gid://shopify/Collection/123456789"
+			// 	],
+			// 	"descriptionHtml" => "This is a sample description of a sweater weather.",
+			// 	"productType" => "Cool t-shirts",
+			// 	"tags" => [
+			// 		"Cool",
+			// 		"t-shirts"
+			// 	],
+			// 	"title" => "Sweater Weather",
+			// 	"vendor" => "Hazel",
+			// 	"productOptions" => [
+			// 		[
+			// 			"name" => "Color",
+			// 			"values" => [
+			// 				[
+			// 					"name" => "Red"
+			// 				],
+			// 				[
+			// 					"name" => "Green"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"name" => "Size",
+			// 			"values" => [
+			// 				[
+			// 					"name" => "Small"
+			// 				],
+			// 				[
+			// 					"name" => "Medium"
+			// 				]
+			// 			]
+			// 		]
+			// 	]
+			// ];
+			
 			$mutation = <<<MUTATION
 				mutation CreateProductWithOptions(\$productInput: ProductCreateInput) {
 					productCreate(product: \$productInput) {
@@ -219,6 +258,10 @@ class HomeController extends Controller
 							id
 							title
 							descriptionHtml
+							options {
+								name
+								values
+							}
 						}
 						userErrors {
 							field
@@ -296,7 +339,7 @@ class HomeController extends Controller
 		}
 	}
 
-	public function insertProductOptionValues()
+	public function updateProductOptionValues()
 	{
 		try {
 			$shop = Auth::user();
@@ -372,6 +415,150 @@ class HomeController extends Controller
 			}
 			$productVariantsInput = $request->input('productVariantsInput'); // Input passed from the frontend
 
+			// $productVariantsInput = [
+			// 	"productId" => "",
+			// 	"variantsInput" => [
+			// 		[
+			// 			"price" => 1.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Red"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Small"
+			// 				]
+			// 			],
+			// 			"inventoryItem" => [
+			// 				"sku" => "RED_SML"
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 3.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Red"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Medium"
+			// 				]
+			// 			],
+			// 			"inventoryItem" => [
+			// 				"sku" => "RED_MED"
+			// 			],
+			// 			"inventoryQuantities" => [
+			// 				[
+			// 					"locationId" => "gid://shopify/Location/95788269845",
+			// 					"availableQuantity" => 281
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 6.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Red"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Large"
+			// 				]
+			// 			],
+			// 			"inventoryItem" => [
+			// 				"sku" => "RED_LRG",
+			// 				"measurement" => [
+			// 					"weight" => [
+			// 						"unit" => "GRAMS",
+			// 						"value" => 250
+			// 					]
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 9.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Green"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Small"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 12.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Green"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Medium"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 15.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Green"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Large"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 18.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Blue"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Small"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 21.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Blue"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Medium"
+			// 				]
+			// 			]
+			// 		],
+			// 		[
+			// 			"price" => 24.99,
+			// 			"optionValues" => [
+			// 				[
+			// 					"optionName" => "Color",
+			// 					"name" => "Blue"
+			// 				],
+			// 				[
+			// 					"optionName" => "Size",
+			// 					"name" => "Large"
+			// 				]
+			// 			]
+			// 		]
+			// 	]
+			// ];
+
 			$mutation = <<<MUTATION
 			mutation CreateProductVariants(\$productId: ID!, \$variantsInput: [ProductVariantsBulkInput!]!) {
 				productVariantsBulkCreate(productId: \$productId, strategy: REMOVE_STANDALONE_VARIANT, variants: \$variantsInput) {
@@ -379,6 +566,24 @@ class HomeController extends Controller
 						id
 						title
 						sku
+						image {
+							id
+						}
+						inventoryQuantity
+						inventoryItem {
+							id
+							inventoryLevels(first: 10) {
+								edges {
+									node {
+										location
+										quantities(names: "available") {
+											name
+											quantity
+										}
+									}
+								}
+							}
+						}
 						selectedOptions {
 							name
 							value
@@ -736,7 +941,7 @@ class HomeController extends Controller
 		}
 	}
 
-	public function show()
+	public function showList()
 	{
 		try {
 

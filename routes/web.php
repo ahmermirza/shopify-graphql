@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['verify.shopify']], function () {
-    Route::get('/', [HomeController::class, 'setInventoryItemsQuantity'])->name('home');
+    Route::get('/', [HomeController::class, 'home'])->name('home');
 
     // Route::get('/', [CustomerController::class, 'home'])->name('home');
 
