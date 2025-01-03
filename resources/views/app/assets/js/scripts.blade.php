@@ -321,7 +321,15 @@
                 variant.selectedOptions.forEach(option => {
                     content += `<li><strong>${option.name}:</strong> ${option.value}</li>`;
                 });
-
+                content += `</ul>`;
+                content += `<strong>Inventory Details:</strong><ul style='margin-top: 5px;'>`;
+                variant.inventoryItem.inventoryLevels.edges.forEach(edge => {
+                    const location = edge.node.location; // Location of the inventory
+                    content += `<li><strong>Location:</strong> ${location.name || 'Unknown'}</li>`;
+                    edge.node.quantities.forEach(quantity => {
+                        content += `<li style="margin-left: 15px;"><strong>${quantity.name}:</strong> ${quantity.quantity}</li>`;
+                    });
+                });
                 content += `</ul>`;
             });
 

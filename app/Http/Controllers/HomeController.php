@@ -575,7 +575,9 @@ class HomeController extends Controller
 							inventoryLevels(first: 10) {
 								edges {
 									node {
-										location
+										location {
+											name
+										}
 										quantities(names: "available") {
 											name
 											quantity
