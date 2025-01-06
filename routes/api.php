@@ -28,7 +28,7 @@ Route::group(['middleware' => ['verify.shopify']], function () {
     Route::post('create', [HomeController::class, 'create'])->name('create');
     Route::post('create-product-variant', [HomeController::class, 'insertVariants'])->name('product.variants.insert');
     Route::patch('product-update', [HomeController::class, 'update'])->name('product.update');
-    Route::get('product/show', [HomeController::class, 'showList'])->name('product.show');
+    Route::get('product/show', [HomeController::class, 'showProductList'])->name('product.show');
     Route::post('product/options/values', [HomeController::class, 'updateProductOptionValues'])->name('product.option.values.insert');
     Route::get('product/options/values', [HomeController::class, 'showProductOptions'])->name('product.options.show');
     Route::get('product/variants', [HomeController::class, 'showProductVariants'])->name('product.variants.show');

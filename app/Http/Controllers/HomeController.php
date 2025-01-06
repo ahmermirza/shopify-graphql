@@ -252,8 +252,8 @@ class HomeController extends Controller
 			// ];
 			
 			$mutation = <<<MUTATION
-				mutation CreateProductWithOptions(\$productInput: ProductCreateInput) {
-					productCreate(product: \$productInput) {
+				mutation CreateProductWithOptions(\$input: ProductInput!, \$media: [CreateMediaInput!]) {
+					productCreate(input: \$input, media: \$media) {
 						product {
 							id
 							title
@@ -271,7 +271,10 @@ class HomeController extends Controller
 				}
 			MUTATION;
 
-			$response = $shop->api()->graph($mutation, ['productInput' => $productInput]);
+			$response = $shop->api()->graph($mutation, [
+                'input' => $productInput['input'],
+                'media' => $productInput['media'],
+            ]);
 
 			if (isset($response['errors']) && $response['errors']) {
 				return response()->json(['error' => 'API request failed', 'details' => $response['errors']], 500);
@@ -943,7 +946,7 @@ class HomeController extends Controller
 		}
 	}
 
-	public function showList()
+	public function showProductList()
 	{
 		try {
 

@@ -74,39 +74,48 @@
         };
 
         const productInput = {
-            "category": "gid://shopify/TaxonomyCategory/aa-1-13-8",
-            "collectionsToJoin": [
-                "gid://shopify/Collection/123456789"
-            ],
-            "descriptionHtml": "This is a sample description of a sweater weather.",
-            "productType": "Cool t-shirts",
-            "tags": [
-                "Cool",
-                "t-shirts"
-            ],
-            "title": "Sweater Weather",
-            "vendor": "Hazel",
-            "productOptions": [{
-                    "name": "Color",
-                    "values": [{
-                            "name": "Red"
-                        },
-                        {
-                            "name": "Green"
-                        }
-                    ]
-                },
-                {
-                    "name": "Size",
-                    "values": [{
-                            "name": "Small"
-                        },
-                        {
-                            "name": "Medium"
-                        }
-                    ]
-                }
-            ]
+            "input" : {
+				"category": "gid://shopify/TaxonomyCategory/aa-1-13-8",
+				"collectionsToJoin": [
+					"gid://shopify/Collection/123456789"
+				],
+				"descriptionHtml": "This is a sample description of a sweater weather.",
+				"productType": "Cool t-shirts",
+				"tags": [
+					"Cool",
+					"t-shirts"
+				],
+				"title": "Sweater Weather",
+				"vendor": "Hazel",
+				"productOptions": [{
+						"name": "Color",
+						"values": [{
+								"name": "Red"
+							},
+							{
+								"name": "Green"
+							}
+						]
+					},
+					{
+						"name": "Size",
+						"values": [{
+								"name": "Small"
+							},
+							{
+								"name": "Medium"
+							}
+						]
+					}
+				]
+			},
+			"media": [
+				{
+					"originalSource": "https://cdn.shopify.com/s/files/1/0852/5227/6501/files/sweater_3_f9c88023-4e58-4fbd-91a9-e659fef1cafe.jpg?v=1736148165",
+					"alt": "Gray helmet for bikers",
+					"mediaContentType": "IMAGE"
+				}
+			]
         };
 
         const createProduct = (productInput) => {
