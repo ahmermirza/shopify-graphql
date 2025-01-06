@@ -165,7 +165,7 @@
 
         const productVariantsInput = {
             "productId": "",
-            "variantsInput": [{
+            "variants": [{
                     "price": 1.99,
                     "optionValues": [{
                             "optionName": "Color",
@@ -178,7 +178,8 @@
                     ],
                     "inventoryItem": {
                         "sku": "RED_SML"
-                    }
+                    },
+					"mediaId": "gid://shopify/MediaImage/47484539765013"
                 },
                 {
                     "price": 3.99,
@@ -197,7 +198,8 @@
                     "inventoryQuantities": [{
                         "locationId": "gid://shopify/Location/95788269845",
                         "availableQuantity": 281
-                    }]
+                    }],
+					"mediaId": "gid://shopify/MediaImage/47484539765013"
                 },
                 {
                     "price": 6.99,
@@ -218,7 +220,8 @@
                                 "value": 250
                             }
                         }
-                    }
+                    },
+					"mediaId": "gid://shopify/MediaImage/47484539765013"
                 },
                 {
                     "price": 9.99,
@@ -230,7 +233,8 @@
                             "optionName": "Size",
                             "name": "Small"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458107157"
                 },
                 {
                     "price": 12.99,
@@ -242,7 +246,8 @@
                             "optionName": "Size",
                             "name": "Medium"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458107157"
                 },
                 {
                     "price": 15.99,
@@ -254,7 +259,8 @@
                             "optionName": "Size",
                             "name": "Large"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458107157"
                 },
                 {
                     "price": 18.99,
@@ -266,7 +272,8 @@
                             "optionName": "Size",
                             "name": "Small"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458074389"
                 },
                 {
                     "price": 21.99,
@@ -278,7 +285,8 @@
                             "optionName": "Size",
                             "name": "Medium"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458074389"
                 },
                 {
                     "price": 24.99,
@@ -290,7 +298,8 @@
                             "optionName": "Size",
                             "name": "Large"
                         }
-                    ]
+                    ],
+					"mediaId": "gid://shopify/MediaImage/47484458074389"
                 }
             ]
         };

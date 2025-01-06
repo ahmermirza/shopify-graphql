@@ -563,8 +563,8 @@ class HomeController extends Controller
 			// ];
 
 			$mutation = <<<MUTATION
-			mutation CreateProductVariants(\$productId: ID!, \$variantsInput: [ProductVariantsBulkInput!]!) {
-				productVariantsBulkCreate(productId: \$productId, strategy: REMOVE_STANDALONE_VARIANT, variants: \$variantsInput) {
+			mutation CreateProductVariants(\$productId: ID!, \$variants: [ProductVariantsBulkInput!]!) {
+				productVariantsBulkCreate(productId: \$productId, variants: \$variants, strategy: REMOVE_STANDALONE_VARIANT) {
 					productVariants {
 						id
 						title
@@ -603,7 +603,7 @@ class HomeController extends Controller
 			MUTATION;
 			$variantsResponse = $shop->api()->graph($mutation, [
 				'productId' => $productVariantsInput['productId'],
-				'variantsInput' => $productVariantsInput['variantsInput']
+				'variants' => $productVariantsInput['variants']
 			]);
 
 			if (isset($variantsResponse['errors']) && $variantsResponse['errors']) {
